@@ -9,11 +9,13 @@ export default (api: IApi) => {
       schema({ zod }) {
         return zod.object({
           directory: zod.string().optional(),
+          useTsCompiler: zod.boolean().optional(),
           tsconfigPath: zod.string().optional(),
           checkerOptions: zod.object({}).optional(),
           compiler: zod
             .object({
               babelStandaloneCDN: zod.string().optional(),
+              typescriptCDN: zod.string().optional(),
             })
             .optional(),
         });

@@ -5,6 +5,7 @@ export { default as Foo } from './Foo';
 export * from './List';
 export { default as Article } from './functional';
 export { default as Badge } from './my-badge.vue';
+export * from './ClassCount'
 
 export function useVNode() {
   return h('div');

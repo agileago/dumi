@@ -1,7 +1,7 @@
 import type Config from '@umijs/bundler-webpack/compiled/webpack-5-chain';
 import type { IApi } from 'dumi';
 import { babelPresetTypeScript } from 'dumi/tech-stack-utils';
-import path from 'node:path';
+import path, { join } from 'node:path';
 import VueLoaderPlugin from 'vue-loader/dist/pluginWebpack5.js';
 
 // Webpack configuration mainly refers to @umijs/preset-vue
@@ -11,6 +11,7 @@ export function getConfig(config: Config, api: IApi) {
   // and include/exclude of webpack needs to be converted to the corresponding format for different systems.
   const dumiSrc = path.resolve(api.paths.absSrcPath);
   const babelInUmi = config.module.rule('src').use('babel-loader').entries();
+  const { userConfig } = api;
 
   // react jsx rules will only include the .dumi directory
   config.module.rule('jsx-ts-tsx').include.add(dumiSrc).end();
@@ -28,6 +29,19 @@ export function getConfig(config: Config, api: IApi) {
       presets: [...babelInUmi.options.presets, babelPresetTypeScript()],
       plugins: [require.resolve('../../../compiled/@vue/babel-plugin-jsx')],
     });
+
+  console.log(1111, userConfig.vue)
+  if (userConfig.vue?.useTsCompiler) {
+    config.module
+      .rule('vue-jsx-tsx')
+      .use('ts-loader')
+      .loader(require.resolve('ts-loader'))
+      .after('babel-loader')
+      .options({
+        transpileOnly: true,
+        configFile: userConfig.vue.tsconfigPath,
+      })
+  }
 
   config.module.noParse(/^(vue|vue-router|vuex|vuex-router-sync)$/);
 
@@ -72,8 +86,6 @@ export function getConfig(config: Config, api: IApi) {
 
   // asset
   config.module.rules.delete('asset');
-
-  const { userConfig } = api;
 
   const inlineLimit = parseInt(userConfig.inlineLimit || '10000', 10);
 

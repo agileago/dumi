@@ -1,15 +1,15 @@
 // import AutoImport from 'unplugin-auto-import/webpack';
 // import Components from 'unplugin-vue-components/webpack';
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
-import path from 'node:path';
+import path, { join } from 'node:path';
 export default {
   apiParser: {},
   resolve: {
     entryFile: './src/index.ts',
   },
-  html2sketch: {},
   presets: [require.resolve('@dumijs/preset-vue')],
   vue: {
+    useTsCompiler: true,
     tsconfigPath: path.resolve(__dirname, './tsconfig.vue.json'),
     checkerOptions: {
       externalSymbolLinkMappings: {

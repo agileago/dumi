@@ -1,4 +1,4 @@
-import { defineComponent, PropType, shallowRef, SlotsType } from 'vue';
+import { defineComponent, type PropType, shallowRef, type SlotsType } from 'vue';
 import './button.less';
 
 export const buttonProps = {
