@@ -1,4 +1,9 @@
-import { BABEL_STANDALONE_CDN, getPkgPath, getPluginPath } from '@/shared';
+import {
+  BABEL_STANDALONE_CDN,
+  getPkgPath,
+  getPluginPath,
+  TYPESCRIPT_STANDALONE_CDN,
+} from '@/shared';
 import type { IApi } from 'dumi';
 import { fsExtra } from 'dumi/plugin-utils';
 import { join } from 'path';
@@ -47,12 +52,17 @@ export default function registerTechStack(api: IApi) {
         src: vueConfig?.compiler?.babelStandaloneCDN || BABEL_STANDALONE_CDN,
         async: true,
       },
+      {
+        src: vueConfig?.compiler?.typescriptCDN || TYPESCRIPT_STANDALONE_CDN,
+        async: true,
+      },
     ];
   });
   api.modifyConfig((memo) => {
     memo.externals = {
       ...memo.externals,
       '@babel/standalone': 'Babel',
+      typescript: 'ts',
     };
     return memo;
   });
