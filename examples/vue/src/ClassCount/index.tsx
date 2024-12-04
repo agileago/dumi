@@ -13,7 +13,7 @@ export interface ClassCountProps {
   onClick?: () => Promise<string>;
 
   slots: {
-    icon: (name: string) => VNodeChild;
+    icon: ({ name }: { name: string }) => VNodeChild;
   };
 }
 
@@ -29,10 +29,6 @@ export class ClassCount extends VueComponent<ClassCountProps> {
    * @public
    */
   foo(name: string) {}
-  // @ts-ignore
-  declare $slots: {
-    icon: (name: string) => VNodeChild;
-  };
 
   render() {
     return (
