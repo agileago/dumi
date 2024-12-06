@@ -374,8 +374,8 @@ importers:
         specifier: 3.4.28
         version: 3.4.28(typescript@5.7.2)
       vue3-oop:
-        specifier: ^1.0.12
-        version: 1.0.12(injection-js@2.4.0)(vue@3.4.28(typescript@5.7.2))
+        specifier: ^1.0.13
+        version: 1.0.13(injection-js@2.4.0)(vue@3.4.28(typescript@5.7.2))
     devDependencies:
       '@dumijs/preset-vue':
         specifier: workspace:*
@@ -9601,8 +9601,8 @@ packages:
       vue:
         optional: true
 
-  vue3-oop@1.0.12:
-    resolution: {integrity: sha512-tsjZ3WXZj0L0RnTUp/aWGUB4/WlnliINY6I8c5IdN4ifoQSh6Avbq//ULm8r8kCjq4Df4KmD7SJZ9qEW3QDhVA==}
+  vue3-oop@1.0.13:
+    resolution: {integrity: sha512-dveHRZv3vp1f1QSZTHdABcmKK4UydIduJymgVZxSN/ZQZisVn38pIJFfo/Wo1+bSCWiFAMagZMmcqXzpyQwpnw==}
     peerDependencies:
       injection-js: '*'
       vue: '3'
@@ -21893,7 +21893,7 @@ snapshots:
     optionalDependencies:
       vue: 3.3.4
 
-  vue3-oop@1.0.12(injection-js@2.4.0)(vue@3.4.28(typescript@5.7.2)):
+  vue3-oop@1.0.13(injection-js@2.4.0)(vue@3.4.28(typescript@5.7.2)):
     dependencies:
       injection-js: 2.4.0
       vue: 3.4.28(typescript@5.7.2)

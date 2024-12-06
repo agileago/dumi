@@ -1,7 +1,12 @@
 import type { VNodeChild } from 'vue';
 import { Mut, VueComponent, type ComponentProps } from 'vue3-oop';
 
-export interface ClassCountProps {
+export interface ClassCountProps<T = number[]> {
+  /**
+   * @type T
+   * @description 数据源
+   */
+  data?: T
   /**
    * 默认数量
    */
@@ -13,14 +18,15 @@ export interface ClassCountProps {
   onClick?: () => Promise<string>;
 
   slots: {
-    icon: ({ name }: { name: string }) => VNodeChild;
+    icon: ({ name }: { name: T }) => VNodeChild;
   };
 }
 
-export class ClassCount extends VueComponent<ClassCountProps> {
-  static defaultProps: ComponentProps<ClassCountProps> = [
+export class ClassCount<T> extends VueComponent<ClassCountProps<T>> {
+  static defaultProps: ComponentProps<ClassCountProps<any>> = [
     'initValue',
     'onClick',
+    'data',
   ];
 
   @Mut() count = this.props.initValue;
