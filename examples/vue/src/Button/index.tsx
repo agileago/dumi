@@ -96,8 +96,8 @@ const Button = defineComponent({
   },
 });
 
-// type C = typeof Button & {
-//   new (): ButtonMethods;
-// };
+type C = typeof Button & {
+  new (): ButtonMethods;
+};
 
 export default Button;
