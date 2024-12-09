@@ -77,7 +77,7 @@ export function createCompiler({
 
     let code = src;
 
-    if (lang === 'ts' || lang === 'tsx') {
+    if ((lang === 'ts' || lang === 'tsx') && typescript()) {
       const ts = typescript();
       const { outputText } = ts.transpileModule(src, {
         compilerOptions: {
@@ -95,7 +95,6 @@ export function createCompiler({
         fileName: basename + '.' + (lang || 'ts'),
         reportDiagnostics: true,
       });
-      console.log(222222, outputText);
       code = outputText;
     }
 

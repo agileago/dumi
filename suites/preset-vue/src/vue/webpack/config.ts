@@ -1,7 +1,7 @@
 import type Config from '@umijs/bundler-webpack/compiled/webpack-5-chain';
 import type { IApi } from 'dumi';
 import { babelPresetTypeScript } from 'dumi/tech-stack-utils';
-import path, { join } from 'node:path';
+import path from 'node:path';
 import VueLoaderPlugin from 'vue-loader/dist/pluginWebpack5.js';
 
 // Webpack configuration mainly refers to @umijs/preset-vue
@@ -30,8 +30,8 @@ export function getConfig(config: Config, api: IApi) {
       plugins: [require.resolve('../../../compiled/@vue/babel-plugin-jsx')],
     });
 
-  console.log(1111, userConfig.vue)
-  if (userConfig.vue?.useTsCompiler) {
+  // support ts decorator metadata
+  if (userConfig.vue?.supportTsMetadata) {
     config.module
       .rule('vue-jsx-tsx')
       .use('ts-loader')
@@ -40,7 +40,7 @@ export function getConfig(config: Config, api: IApi) {
       .options({
         transpileOnly: true,
         configFile: userConfig.vue.tsconfigPath,
-      })
+      });
   }
 
   config.module.noParse(/^(vue|vue-router|vuex|vuex-router-sync)$/);

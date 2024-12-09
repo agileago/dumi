@@ -11,7 +11,8 @@ const env = babelPresetEnv();
 const typescript = babelPresetTypeScript();
 
 export const compiler = createCompiler({
-  typescript: () => ts,
+  // @ts-ignore
+  typescript: () => globalThis.supportTsMetadata && ts,
   babel,
   availablePlugins: {
     'vue-jsx': require.resolve('../../compiled/@vue/babel-plugin-jsx'),

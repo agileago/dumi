@@ -46,17 +46,25 @@ export default function registerTechStack(api: IApi) {
   };
 
   // mark @babel/standalone as external
+
+  if (vueConfig.supportTsMetadata) {
+    // @ts-ignore set option global so compile can get
+    globalThis.supportTsMetadata = true;
+  }
   api.addHTMLHeadScripts(() => {
-    return [
+    const scripts = [
       {
         src: vueConfig?.compiler?.babelStandaloneCDN || BABEL_STANDALONE_CDN,
         async: true,
       },
-      {
+    ];
+    if (vueConfig.supportTsMetadata) {
+      scripts.push({
         src: vueConfig?.compiler?.typescriptCDN || TYPESCRIPT_STANDALONE_CDN,
         async: true,
-      },
-    ];
+      });
+    }
+    return scripts;
   });
   api.modifyConfig((memo) => {
     memo.externals = {

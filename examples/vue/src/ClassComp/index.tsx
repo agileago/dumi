@@ -6,7 +6,7 @@ export interface ClassCountProps<T = number[]> {
    * @type T
    * @description 数据源
    */
-  data?: T
+  data?: T;
   /**
    * 默认数量
    */

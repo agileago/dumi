@@ -1,7 +1,7 @@
 // import AutoImport from 'unplugin-auto-import/webpack';
 // import Components from 'unplugin-vue-components/webpack';
 // import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
-import path, { join } from 'node:path';
+import path from 'node:path';
 export default {
   apiParser: {},
   resolve: {
@@ -9,7 +9,7 @@ export default {
   },
   presets: [require.resolve('@dumijs/preset-vue')],
   vue: {
-    useTsCompiler: true,
+    supportTsMetadata: true,
     tsconfigPath: path.resolve(__dirname, './tsconfig.vue.json'),
     checkerOptions: {
       externalSymbolLinkMappings: {

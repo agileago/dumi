@@ -9,8 +9,8 @@ export default (api: IApi) => {
       schema({ zod }) {
         return zod.object({
           directory: zod.string().optional(),
-          useTsCompiler: zod.boolean().optional(),
           tsconfigPath: zod.string().optional(),
+          supportTsMetadata: zod.boolean().optional(),
           checkerOptions: zod.object({}).optional(),
           compiler: zod
             .object({
